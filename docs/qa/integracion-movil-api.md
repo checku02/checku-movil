@@ -51,7 +51,22 @@ Verificar que el flujo de login, manejo de sesión JWT y persistencia de token e
 - Se verificó que el CORS del backend permite las peticiones desde la app móvil.
 
 ---
+---
 
-## 4. Conclusión HU1
+# Pruebas de integración Móvil ↔ API – HU5 (Escaneo y registro)
 
-Las pruebas de integración de login y sesión en la aplicación móvil se consideran **cubiertas** para el alcance de HU1.
+## HU5 – Escaneo QR y registro de asistencia
+
+| ID      | Caso                                      | Resultado esperado                                      | Estado |
+|---------|-------------------------------------------|---------------------------------------------------------|--------|
+| INT-M20 | Escanear QR válido                        | 200 + confirmación con materia, grupo y hora            |        |
+| INT-M21 | Escanear QR expirado                      | Error claro (QR expirado)                               |        |
+| INT-M22 | Escanear QR inválido / manipulado         | Error claro                                             |        |
+| INT-M23 | Registro duplicado (mismo alumno)         | Error: ya registró asistencia                           |        |
+| INT-M24 | Confirmación en menos de 5 segundos       | Feedback rápido con materia, grupo y hora               |        |
+| INT-M25 | Sin conexión / error de red               | Mensaje amigable de error                               |        |
+
+## Notas
+
+- El escáner debe mostrar confirmación con materia, grupo y hora.
+- Se manejan correctamente los códigos de error del backend (QR expirado, duplicado, inválido).
